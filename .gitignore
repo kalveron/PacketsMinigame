@@ -29,6 +29,7 @@ _ReSharper*/
 [Ll]ibrary/
 [Tt]est[Rr]esult*
 [Tt]emp/
+[Ll]ogs/
 .vs/
 #Nuget packages folder
 packages/
