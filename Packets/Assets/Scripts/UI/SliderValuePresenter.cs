@@ -22,7 +22,8 @@ namespace Packets
        
         private  void UpdateText(float value)
         {
-            _text.text = string.Format(ProgressString, value * 10);
+          
+            _text.text = string.Format(ProgressString, (int)( value * 100));
         }
     }
 }
