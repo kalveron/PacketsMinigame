@@ -9,10 +9,7 @@ namespace Packets
         private Vector3 _startingLocation;
         private Vector3 _endingLocation;
         private float _movementTime;
-        private void Start()
-        {
-            IsMoving = false;
-        }
+       
 
         void FixedUpdate()
         {
@@ -38,6 +35,8 @@ namespace Packets
             IsMoving = true;
             TransitionTime = transitionTime;
             _movementTime = 0;
+
+          
 
         }
 
