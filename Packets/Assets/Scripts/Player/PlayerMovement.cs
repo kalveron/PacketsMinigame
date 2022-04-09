@@ -8,7 +8,7 @@ namespace Packets
     public class PlayerMovement : MonoBehaviour
     {
         [SerializeField]
-        private List<GameObject> _ports;
+        private List<Port> _ports;
 
         private int _placementIndex;
         private Shuttle _shuttle;
