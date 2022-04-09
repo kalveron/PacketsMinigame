@@ -18,6 +18,7 @@ namespace Packets
 
         private void Start()
         {
+            _packets = new List<Packet>();
             Port.PacketAccepted += OnPort_PacketAccepted;
             Port.PacketBlocked += OnPort_PacketBlocked;
         }
