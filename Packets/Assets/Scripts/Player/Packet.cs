@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace Packets
 {
-    [RequireComponent(typeof(Shuttle))]
+   
     public class Packet : MonoBehaviour
     {
         [SerializeField]
@@ -14,14 +14,12 @@ namespace Packets
         [SerializeField]
         private Color _maliciousColor;
 
+        [SerializeField]
         private Shuttle _shuttle;
 
         public bool Friendly { get; private set; }
 
-        void Start()
-        {
-            _shuttle = GetComponent<Shuttle>();
-        }
+       
 
         public void Init(bool friendly, Vector3 port, float transferTime)
         {

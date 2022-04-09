@@ -100,6 +100,7 @@ MonoBehaviour:
   _renderer: {fileID: 8121523435949727048}
   _friendlyColor: {r: 0.11853241, g: 0.10849059, b: 1, a: 1}
   _maliciousColor: {r: 1, g: 0, b: 0, a: 1}
+  _shuttle: {fileID: 8121523435949727049}
 --- !u!114 &8121523435949727049
 MonoBehaviour:
   m_ObjectHideFlags: 0
