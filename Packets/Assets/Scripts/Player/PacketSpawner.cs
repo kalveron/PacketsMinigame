@@ -12,7 +12,7 @@ namespace Packets
         [SerializeField]
         private List<Port> _ports;
 
-        private int _packetLimit = 15;
+        public int PacketLimit => 15;
        
         private List<Packet> _packets;
 
@@ -34,7 +34,7 @@ namespace Packets
 
         public bool SpawnPacket(bool friendly)
         {
-            if (_packets.Count < _packetLimit)
+            if (_packets.Count < PacketLimit)
             {
                
                 var packet = Instantiate(_packetPrefab, transform.localPosition, Quaternion.identity).GetComponent<Packet>();
@@ -48,7 +48,7 @@ namespace Packets
         }
         public bool SpawnPacket(bool friendly, Port destination)
         {
-            if (_packets.Count < _packetLimit)
+            if (_packets.Count < PacketLimit)
             {
                 
                 var packet = Instantiate(_packetPrefab, transform.localPosition, Quaternion.identity).GetComponent<Packet>();
