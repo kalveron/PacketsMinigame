@@ -64,7 +64,7 @@ namespace Packets
         private void DisposeOfPacket(Packet packet)
         {
             _packets.Remove(packet);
-            Destroy(packet);
+            Destroy(packet.gameObject);
         }
     }
 }
