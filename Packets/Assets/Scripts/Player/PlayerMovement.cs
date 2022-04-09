@@ -30,6 +30,11 @@ namespace Packets
             {
                 MovePlayer(1);
             }
+            if(Input.GetKeyDown(KeyCode.Return))
+            {
+                var port = _ports[_placementIndex];
+                port.TogglePort(!port.Open);
+            }
         }
 
 
