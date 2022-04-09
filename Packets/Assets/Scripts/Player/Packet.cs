@@ -24,7 +24,7 @@ namespace Packets
         public void Init(bool friendly, Vector3 port, float transferTime)
         {
             Friendly = friendly;
-            _renderer.color = Friendly ? _friendlyColor : _maliciousColor;
+            _renderer.color = Friendly ? _friendlyColor : _maliciousColor;            
             _shuttle.Move(port, transferTime);
 
         }
