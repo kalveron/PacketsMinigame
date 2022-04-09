@@ -6,7 +6,7 @@ using UnityEngine;
 namespace Packets
 {
     
-    [RequireComponent(typeof(Collider2D))]
+    
     public class Port : MonoBehaviour
     {
         public static event Action<PacketProcessedArgs> PacketAccepted;
@@ -35,12 +35,13 @@ namespace Packets
             _spriteRenderer.sprite = Open ? _openSprite : _closedSprite;
         }
 
-        private void OnCollisionEnter2D(Collision2D collision)
+        private void OnTriggerEnter2D(Collider2D collision)
         {
-            var packet = collision.otherCollider.GetComponent<Packet>();
             
+            var packet = collision.GetComponent<Packet>();
+
             //Ignore collisions with non-packet objects
-            if(packet == null)
+            if (packet == null)
             {
                 return;
             }
@@ -55,6 +56,10 @@ namespace Packets
                 PacketBlocked?.Invoke(args);
             }
         }
+
+      
+
+
 
 
 
