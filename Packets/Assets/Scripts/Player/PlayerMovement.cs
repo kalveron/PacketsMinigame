@@ -22,11 +22,11 @@ namespace Packets
         }
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKeyDown(KeyCode.LeftArrow)  || Input.GetKeyDown(KeyCode.W))
             {
                 MovePlayer(-1);
             }
-            if(Input.GetKeyDown(KeyCode.RightArrow))
+            if(Input.GetKeyDown(KeyCode.RightArrow) || Input.GetKeyDown(KeyCode.D))
             {
                 MovePlayer(1);
             }
