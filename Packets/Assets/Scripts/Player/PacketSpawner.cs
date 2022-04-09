@@ -19,18 +19,14 @@ namespace Packets
         private void Start()
         {
             _packets = new List<Packet>();
-            Port.PacketAccepted += OnPort_PacketAccepted;
-            Port.PacketBlocked += OnPort_PacketBlocked;
+            Port.PacketProcessed += OnPort_PacketProcessed;
+          
         }
 
-        private void OnPort_PacketBlocked(PacketProcessedArgs obj)
+        private void OnPort_PacketProcessed(PacketProcessedArgs obj)
         {
-            DisposeOfPacket(obj.Packet);
-        }
-
-        private void OnPort_PacketAccepted(PacketProcessedArgs obj)
-        {
-            DisposeOfPacket(obj.Packet);
+            _packets.Remove(obj.Packet);
+            Destroy(obj.Packet.gameObject);
         }
 
         public bool SpawnPacket(bool friendly)
@@ -62,10 +58,6 @@ namespace Packets
             return false;
         }
 
-        private void DisposeOfPacket(Packet packet)
-        {
-            _packets.Remove(packet);
-            Destroy(packet.gameObject);
-        }
+    
     }
 }

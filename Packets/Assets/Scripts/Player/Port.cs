@@ -9,8 +9,8 @@ namespace Packets
     
     public class Port : MonoBehaviour
     {
-        public static event Action<PacketProcessedArgs> PacketAccepted;
-        public static event Action<PacketProcessedArgs> PacketBlocked;
+        public static event Action<PacketProcessedArgs> PacketProcessed;
+        
 
         [SerializeField]
         private SpriteRenderer _spriteRenderer;
@@ -45,16 +45,9 @@ namespace Packets
             {
                 return;
             }
-            var args = new PacketProcessedArgs(this, packet);
-
-            if (Open)
-            {
-                PacketAccepted?.Invoke(args);
-            }
-            else
-            {
-                PacketBlocked?.Invoke(args);
-            }
+            var args = new PacketProcessedArgs(this, packet, Open);
+            PacketProcessed?.Invoke(args);
+         
         }
 
       
@@ -72,10 +65,13 @@ namespace Packets
       
         public Packet Packet { get; private set; }
 
-        public PacketProcessedArgs(Port port, Packet packet)
+        public bool Accepted { get; private set; }
+
+        public PacketProcessedArgs(Port port, Packet packet, bool accepted)
         {
             Port = port;
             Packet = packet; 
+            Accepted = accepted;
         }
 
     }
