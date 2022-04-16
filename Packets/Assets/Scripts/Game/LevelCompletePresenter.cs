@@ -29,7 +29,7 @@ namespace Packets
         {
             "Hello World",
             "The answer is 42.",
-            "(>'-')> <('-'<) ^('-')^ v('-')v(>'-')>"
+            "(>'-')> <( '-' )> <('-'<)"
         };
 
         private List<string> _failureMessages = new List<string>()
