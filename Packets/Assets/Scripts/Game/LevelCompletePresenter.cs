@@ -67,6 +67,7 @@ namespace Packets
 
 
             _messageText.text = message;
+            _messageText.color = success ? Color.green : Color.red;
 
         }
 
