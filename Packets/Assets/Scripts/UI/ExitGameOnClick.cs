@@ -9,6 +9,5 @@ namespace Packets.UI
             Application.Quit();
         }
 
-
     }
 }
