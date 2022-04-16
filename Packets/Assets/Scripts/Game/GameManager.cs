@@ -19,6 +19,8 @@ namespace Packets
         [SerializeField]
         private Slider _corruptionSlider;
 
+        public bool GameActive { get; private set; }
+
         private float _waveCooldown = 0f;
         private float _waveDelay;
 
@@ -37,6 +39,7 @@ namespace Packets
                 if(slider.value >= slider.maxValue)
                 {
                     LevelComplete?.Invoke(obj.Packet.Friendly);
+                    StopGame();
                 }
             }
         }
@@ -53,6 +56,22 @@ namespace Packets
                 _waveCooldown = 0;
                 _waveDelay = UnityEngine.Random.Range(3f, 5f);
             }
+        }
+
+        public void StartGame()
+        {
+            _progressSlider.value = 0;
+            _corruptionSlider.value = 0;
+            GameActive = true;
+        }
+        public void StopGame()
+        {
+            GameActive = false;
+        }
+
+        public void PauseGame(bool toggle)
+        {
+            GameActive = toggle;
         }
     }
 }
