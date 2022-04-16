@@ -33,6 +33,7 @@ namespace Packets
         {
             Open = open;
             _spriteRenderer.sprite = Open ? _openSprite : _closedSprite;
+            _spriteRenderer.color = Open ? Color.green : Color.white;
         }
 
         private void OnTriggerEnter2D(Collider2D collision)
