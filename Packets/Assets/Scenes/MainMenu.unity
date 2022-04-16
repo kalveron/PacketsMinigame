@@ -181,7 +181,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_text: "Controls: \nA/Left Arrow - Move Player Left\nD/Right Arrow - Move Player
-    Right\nEnter - Open/Close port\n\nCreated by Andrew Jackman\n\nCS 6501: Network
+    Right\nW/Enter - Open/Close port\n\nCreated by Andrew Jackman\n\nCS 6501: Network
     Privacy and Security"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
