@@ -57,7 +57,7 @@ namespace Packets
                     _spawner.SpawnPacket(friendly);
 
                     _waveCooldown = 0;
-                    _waveDelay = UnityEngine.Random.Range(3f, 5f);
+                    _waveDelay = UnityEngine.Random.Range(2f, 3f);
                 }
             }
         }
