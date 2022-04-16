@@ -50,7 +50,7 @@ namespace Packets
                 var packet = Instantiate(_packetPrefab, transform.localPosition, Quaternion.identity).GetComponent<Packet>();
                 _packets.Add(packet);
                 var portLocation = _ports.GetRandomItem().transform.localPosition;
-                packet.Init(friendly, portLocation, 5);
+                packet.Init(friendly, portLocation, Random.Range(1f, 3f));
               
         }
         public void SpawnPacket(bool friendly, Port destination)
@@ -60,7 +60,7 @@ namespace Packets
                 var packet = Instantiate(_packetPrefab, transform.localPosition, Quaternion.identity).GetComponent<Packet>();
                 _packets.Add(packet);
                 var portLocation = destination.transform.localPosition;
-                packet.Init(friendly, portLocation, 5);
+                packet.Init(friendly, portLocation, Random.Range(1f, 3f));
            
         }
 
