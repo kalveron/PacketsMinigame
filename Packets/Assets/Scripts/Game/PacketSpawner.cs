@@ -10,9 +10,7 @@ namespace Packets
         private GameObject _packetPrefab;
 
         [SerializeField]
-        private List<Port> _ports;
-
-       
+        private List<Port> _ports;       
        
         private List<Packet> _packets;
 
@@ -20,7 +18,23 @@ namespace Packets
         {
             _packets = new List<Packet>();
             Port.PacketProcessed += OnPort_PacketProcessed;
+            GameManager.LevelComplete += OnGameManager_LevelComplete;
           
+        }
+
+        private void OnDestroy()
+        {
+            GameManager.LevelComplete -= OnGameManager_LevelComplete;
+            Port.PacketProcessed -= OnPort_PacketProcessed;            
+        }
+
+        private void OnGameManager_LevelComplete(bool obj)
+        {
+            foreach(var packet in _packets)
+            {
+                Destroy(packet.gameObject);
+            }
+            _packets.Clear();
         }
 
         private void OnPort_PacketProcessed(PacketProcessedArgs obj)
