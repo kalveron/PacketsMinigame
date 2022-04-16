@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -5,6 +6,8 @@ namespace Packets
 {
     public class GameManager : MonoBehaviour
     {
+        public event Action<bool> LevelComplete;
+
         private const float ProgressPerPacket = .1f;
 
         [SerializeField]
@@ -31,6 +34,10 @@ namespace Packets
                 var slider = obj.Packet.Friendly ? _progressSlider : _corruptionSlider;
 
                 slider.value += ProgressPerPacket;
+                if(slider.value >= slider.maxValue)
+                {
+                    LevelComplete?.Invoke(obj.Packet.Friendly);
+                }
             }
         }
 
@@ -40,11 +47,11 @@ namespace Packets
             if(_waveCooldown >= _waveDelay)
             {
                
-                    bool friendly = Random.Range(0, 2) == 0;
+                    bool friendly = UnityEngine.Random.Range(0, 2) == 0;
                     _spawner.SpawnPacket(friendly);
                 
                 _waveCooldown = 0;
-                _waveDelay = Random.Range(3f, 5f);
+                _waveDelay = UnityEngine.Random.Range(3f, 5f);
             }
         }
     }
