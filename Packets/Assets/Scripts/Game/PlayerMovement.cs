@@ -22,7 +22,7 @@ namespace Packets
         }
         void Update()
         {
-            if (Input.GetKeyDown(KeyCode.LeftArrow)  || Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.LeftArrow)  || Input.GetKeyDown(KeyCode.A))
             {
                 MovePlayer(-1);
             }
@@ -30,7 +30,7 @@ namespace Packets
             {
                 MovePlayer(1);
             }
-            if(Input.GetKeyDown(KeyCode.Return))
+            if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.W))
             {
                 var port = _ports[_placementIndex];
                 port.TogglePort(!port.Open);
