@@ -1,15 +1,12 @@
-using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace Packets
 {
     public class LevelCompletePresenter : MonoBehaviour
     {
-        private const string MainMenu = "MainMenu";
         private const string SuccessMessage = "Message Decrypted: {0}";
         private const string FailureMessage = "System Corrupted: {0}";
         
@@ -29,7 +26,7 @@ namespace Packets
         {
             "Hello World",
             "The answer is 42.",
-            "(>'-')> <( '-' )> <('-'<)"
+            "Look at Kirby dance! (>'-')> <( '-' )> <('-'<)"
         };
 
         private List<string> _failureMessages = new List<string>()
@@ -67,7 +64,7 @@ namespace Packets
 
 
             _messageText.text = message;
-            _messageText.color = success ? Color.green : Color.red;
+
 
         }
 
