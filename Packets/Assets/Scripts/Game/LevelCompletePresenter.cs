@@ -7,7 +7,7 @@ namespace Packets
 {
     public class LevelCompletePresenter : MonoBehaviour
     {
-        private const string SuccessMessage = "Message Decrypted: {0}";
+        private const string SuccessMessage = "Packets Combined: {0}";
         private const string FailureMessage = "System Corrupted: {0}";
         
         [SerializeField]
