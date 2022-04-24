@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -18,6 +17,7 @@ namespace Packets
         {
             _packets = new List<Packet>();
             Port.PacketProcessed += OnPort_PacketProcessed;
+            Firewall.PacketDestroyed += OnFirewall_PacketDestroyed;
             GameManager.LevelComplete += OnGameManager_LevelComplete;
           
         }
@@ -25,6 +25,7 @@ namespace Packets
         private void OnDestroy()
         {
             GameManager.LevelComplete -= OnGameManager_LevelComplete;
+            Firewall.PacketDestroyed -= OnFirewall_PacketDestroyed;
             Port.PacketProcessed -= OnPort_PacketProcessed;            
         }
 
@@ -38,6 +39,12 @@ namespace Packets
         }
 
         private void OnPort_PacketProcessed(PacketProcessedArgs obj)
+        {
+            _packets.Remove(obj.Packet);
+            Destroy(obj.Packet.gameObject);
+        }
+
+        private void OnFirewall_PacketDestroyed(PacketDestroyedArgs obj)
         {
             _packets.Remove(obj.Packet);
             Destroy(obj.Packet.gameObject);
