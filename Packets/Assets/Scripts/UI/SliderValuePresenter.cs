@@ -18,8 +18,12 @@ namespace Packets
             UpdateText(_slider.value);
             _slider.onValueChanged.AddListener(UpdateText);
         }
+        private void OnDestroy()
+        {
+            _slider.onValueChanged.RemoveListener(UpdateText);
+        }
 
-       
+
         private  void UpdateText(float value)
         {
           
