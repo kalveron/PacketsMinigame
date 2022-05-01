@@ -24,13 +24,14 @@ namespace Packets
 
         public bool GameActive { get; private set; }
         public int Level { get; private set; } = 0;
+        public bool PacketConverterUpgrade { get; set; }
+        public bool PacketProgressUpgrade { get; set; }
 
         private float _waveCooldown = 0f;
         private float _waveDelay;
         private float _conversionChance = .1f;
 
-        public bool PacketConverterUpgrade { get; set; }
-        public bool PacketProgressUpgrade { get; set; }
+     
 
 
 
