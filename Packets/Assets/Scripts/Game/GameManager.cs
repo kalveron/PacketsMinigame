@@ -68,6 +68,14 @@ namespace Packets
             _corruptionSlider.value = 0;
             GameActive = true;
         }
+
+        public void RestartGame()
+        {
+            _progressSlider.value = 0;
+            _corruptionSlider.value -= 5;
+            GameActive = true;
+        }
+
         public void StopGame()
         {
             GameActive = false;
