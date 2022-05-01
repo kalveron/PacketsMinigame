@@ -13,6 +13,8 @@ namespace Packets
        
         private List<Packet> _packets;
 
+        public bool SlowPackets { get; set; }
+
         private void Start()
         {
             _packets = new List<Packet>();
@@ -51,24 +53,23 @@ namespace Packets
         }
 
         public void SpawnPacket(bool friendly)
-        {
-          
+        {         
                
                 var packet = Instantiate(_packetPrefab, transform.localPosition, Quaternion.identity).GetComponent<Packet>();
                 _packets.Add(packet);
                 var portLocation = _ports.GetRandomItem().transform.localPosition;
-                packet.Init(friendly, portLocation, Random.Range(1f, 3f));
+                var range = SlowPackets? Random.Range(1f, 3f) : Random.Range(3f, 4f);
+                packet.Init(friendly, portLocation, range);
               
         }
+
         public void SpawnPacket(bool friendly, Port destination)
-        {
-           
-                
+        {                
                 var packet = Instantiate(_packetPrefab, transform.localPosition, Quaternion.identity).GetComponent<Packet>();
                 _packets.Add(packet);
                 var portLocation = destination.transform.localPosition;
-                packet.Init(friendly, portLocation, Random.Range(1f, 3f));
-           
+                var range = SlowPackets ? Random.Range(1f, 3f) : Random.Range(3f, 4f);
+                packet.Init(friendly, portLocation, range);
         }
 
     
