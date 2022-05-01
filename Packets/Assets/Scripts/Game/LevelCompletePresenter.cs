@@ -1,26 +1,26 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
 
 namespace Packets
 {
     public class LevelCompletePresenter : MonoBehaviour
     {
-        private const string SuccessMessage = "Packets Combined: {0}";
+        private const string SuccessMessage = "Message Received: {0}";
         private const string FailureMessage = "System Corrupted: {0}";
         
         [SerializeField]
         private GameObject _completePanel;
 
         [SerializeField]
-        private Button _playAgain;
-
-        [SerializeField]
         private TextMeshProUGUI _messageText;
 
         [SerializeField]
         private GameManager _manager;
+        [SerializeField]
+        private UpgradeManager _upgradeManager;
+
+        public int Level { get; private set; } = 0;
 
         private List<string> _successMessages = new List<string>()
         {
@@ -37,23 +37,42 @@ namespace Packets
 
         void Start()
         {
-            GameManager.LevelComplete += OnGameManager_LevelComplete;
-            _playAgain.onClick.AddListener(PlayAgain);
-    
+            GameManager.LevelComplete += OnGameManager_LevelComplete;    
         }
 
         private void OnDestroy()
         {
-            
-            _playAgain.onClick.RemoveListener(PlayAgain);
+            GameManager.LevelComplete -= OnGameManager_LevelComplete;
         }
 
         private void OnGameManager_LevelComplete(bool success)
         {
+            if (success)
+            {
+                
+                if(Level < 3)
+                {
+                    Level++;
+                    _upgradeManager.ShowUpgrades();
+                }
+                else
+                {
+                    ShowPanel(true);
+                }
+            }
+            else
+            {
+                ShowPanel(false);
+            }         
+
+
+        }
+
+        private void ShowPanel(bool success)
+        {
             _completePanel.SetActive(true);
-         
             string message;
-            if(success)
+            if (success)
             {
                 message = string.Format(SuccessMessage, _successMessages.GetRandomItem());
             }
@@ -61,22 +80,10 @@ namespace Packets
             {
                 message = string.Format(FailureMessage, _failureMessages.GetRandomItem());
             }
-
-
             _messageText.text = message;
-
-
         }
 
-        private void PlayAgain()
-        {
-            _completePanel.SetActive(false);
-            _manager.StartGame();
-
-        }
-
-       
-
-      
     }
+
+
 }
