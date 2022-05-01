@@ -54,7 +54,17 @@ namespace Packets
 
             }
         }
-    private IEnumerator EnableFirewall()
+
+        public void UpgradeCooldown()
+        {
+            _firewallCooldown = 7f;
+        }
+
+        public void UpgradeDuration()
+        {
+            _firewallActiveTime = 10f;
+        }
+        private IEnumerator EnableFirewall()
         {
             _controlText.gameObject.SetActive(false);
             _firewallFill.fillAmount = 0;
