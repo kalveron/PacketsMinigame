@@ -9,8 +9,6 @@ namespace Packets
     {
         public static event Action<bool> LevelComplete;
 
-
-
         [SerializeField]
         private PacketSpawner _spawner;
 
@@ -46,6 +44,13 @@ namespace Packets
             .3f,
         };
 
+        private List<Vector2> _waveDelayMapping = new List<Vector2>()
+        {
+            new Vector2(2, 3),
+            new Vector2(1.5f, 2.5f),
+            new Vector2(1, 1.5f),
+        };
+
 
 
         private void Start()
@@ -65,7 +70,8 @@ namespace Packets
                     _spawner.SpawnPacket(friendly);
 
                     _waveCooldown = 0;
-                    _waveDelay = UnityEngine.Random.Range(2f, 3f);
+                    var delay = _waveDelayMapping[Level];
+                    _waveDelay = UnityEngine.Random.Range(delay.x, delay.y);
                 }
 
 
