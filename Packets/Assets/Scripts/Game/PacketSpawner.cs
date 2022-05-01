@@ -52,23 +52,19 @@ namespace Packets
 
         public void SpawnPacket(bool friendly)
         {
-          
-               
                 var packet = Instantiate(_packetPrefab, transform.localPosition, Quaternion.identity).GetComponent<Packet>();
                 _packets.Add(packet);
                 var portLocation = _ports.GetRandomItem().transform.localPosition;
                 packet.Init(friendly, portLocation, Random.Range(1f, 3f));
               
         }
+
         public void SpawnPacket(bool friendly, Port destination)
-        {
-           
-                
+        {                
                 var packet = Instantiate(_packetPrefab, transform.localPosition, Quaternion.identity).GetComponent<Packet>();
                 _packets.Add(packet);
                 var portLocation = destination.transform.localPosition;
                 packet.Init(friendly, portLocation, Random.Range(1f, 3f));
-           
         }
 
     
