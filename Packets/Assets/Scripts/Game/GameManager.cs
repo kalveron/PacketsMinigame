@@ -29,6 +29,7 @@ namespace Packets
         private float _conversionChance = .1f;
 
         public bool PacketConverterUpgrade { get; set; }
+        public bool PacketProgressUpgrade { get; set; }
 
 
 
@@ -62,6 +63,7 @@ namespace Packets
                 }
 
                 var slider = friendly ? _progressSlider : _corruptionSlider;
+                
 
                 if (_portShield.ShieldUpgrade && _portShield.ShieldActive && !friendly)
                 {
@@ -69,7 +71,7 @@ namespace Packets
                 }
                 else
                 {
-                    slider.value += ProgressPerPacket;
+                    slider.value += PacketProgressUpgrade ? ProgressPerPacket * 2 : ProgressPerPacket;
                 }
 
                 if(slider.value >= slider.maxValue)
