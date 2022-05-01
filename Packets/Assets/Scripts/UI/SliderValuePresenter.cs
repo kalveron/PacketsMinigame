@@ -26,8 +26,8 @@ namespace Packets
 
         private  void UpdateText(float value)
         {
-          
-            _text.text = string.Format(ProgressString, (value / 1) * 100);
+            var progress = (value / 1) * 100;
+            _text.text = string.Format(ProgressString, progress.ToString("0")) ;
         }
     }
 }
