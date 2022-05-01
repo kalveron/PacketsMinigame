@@ -53,6 +53,24 @@ namespace Packets
             Port.PacketProcessed += OnPort_PacketProcessed;
             StartGame();
         }
+        void Update()
+        {
+            if (GameActive)
+            {
+                _waveCooldown += Time.deltaTime;
+                if (_waveCooldown >= _waveDelay)
+                {
+
+                    bool friendly = UnityEngine.Random.Range(0, 2) == 0;
+                    _spawner.SpawnPacket(friendly);
+
+                    _waveCooldown = 0;
+                    _waveDelay = UnityEngine.Random.Range(2f, 3f);
+                }
+
+
+            }
+        }
 
         private void OnPort_PacketProcessed(PacketProcessedArgs obj)
         {
@@ -98,24 +116,7 @@ namespace Packets
             }
         }
 
-        void Update()
-        {
-            if (GameActive)
-            {
-                _waveCooldown += Time.deltaTime;
-                if (_waveCooldown >= _waveDelay)
-                {
-                    
-                    bool friendly = UnityEngine.Random.Range(0, 2) == 0;
-                    _spawner.SpawnPacket(friendly);
 
-                    _waveCooldown = 0;
-                    _waveDelay = UnityEngine.Random.Range(2f, 3f);
-                }
-
-              
-            }
-        }
 
         public void StartGame()
         {
