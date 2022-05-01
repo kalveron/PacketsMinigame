@@ -57,7 +57,7 @@ namespace Packets
 
         public void UpgradeCooldown()
         {
-            _firewallCooldown = 7f;
+            _firewallCooldown = 5f;
         }
 
         public void UpgradeDuration()
@@ -72,6 +72,7 @@ namespace Packets
             yield return new WaitForSeconds(_firewallActiveTime);
             _firewall.SetActive(false);            
             _firewallRecharging = true;
+            _timer = 0;
         }
     }
 
