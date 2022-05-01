@@ -43,11 +43,11 @@ namespace Packets
             _placementIndex += movement;            
             if (_placementIndex >= _ports.Count)
             {
-                _placementIndex = _ports.Count - 1;
+                _placementIndex = 0;
             }
             if(_placementIndex < 0)
             {
-                _placementIndex = 0;
+                _placementIndex = _ports.Count -1;
             }
 
 
