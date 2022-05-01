@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +9,7 @@ namespace Packets
     {
         public static event Action<bool> LevelComplete;
 
-        private const float ProgressPerPacket = .1f;
+
 
         [SerializeField]
         private PacketSpawner _spawner;
@@ -31,7 +32,19 @@ namespace Packets
         private float _waveDelay;
         private float _conversionChance = .1f;
 
-     
+        private List<float> _packetProgressionFriendly = new List<float>()
+        {
+            .1f,
+            .05f,
+            .025f,
+        };
+
+        private List<float> _packetProgressionMalicious = new List<float>()
+        {
+            .1f,
+            .2f,
+            .3f,
+        };
 
 
 
@@ -73,7 +86,8 @@ namespace Packets
                 }
                 else
                 {
-                    slider.value += PacketProgressUpgrade ? ProgressPerPacket * 2 : ProgressPerPacket;
+                    var progress = friendly ? _packetProgressionFriendly : _packetProgressionMalicious;
+                    slider.value += PacketProgressUpgrade ? progress[Level] * 2 : progress[Level];
                 }
 
                 if(slider.value >= slider.maxValue)
