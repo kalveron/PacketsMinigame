@@ -19,10 +19,18 @@ namespace Packets
         [SerializeField]
         private Slider _corruptionSlider;
 
+        [SerializeField]
+        private PortShield _portShield;
+
         public bool GameActive { get; private set; }
 
         private float _waveCooldown = 0f;
         private float _waveDelay;
+        private float _conversionChance = .1f;
+
+        public bool PacketConverterUpgrade { get; set; }
+
+
 
         private void Start()
         {
@@ -32,11 +40,38 @@ namespace Packets
 
         private void OnPort_PacketProcessed(PacketProcessedArgs obj)
         {
-           if(obj.Accepted)
+            if (obj.Accepted)
             {
-                var slider = obj.Packet.Friendly ? _progressSlider : _corruptionSlider;
+                bool friendly;
+                if (PacketConverterUpgrade)
+                {
+                    var chance = UnityEngine.Random.Range(0f, 1);
+                    if (chance <= _conversionChance)
+                    {
+                        friendly = true;
+                    }
+                    else
+                    {
+                        friendly = obj.Packet.Friendly;
+                    }
 
-                slider.value += ProgressPerPacket;
+                }
+                else
+                {
+                    friendly = obj.Packet.Friendly;
+                }
+
+                var slider = friendly ? _progressSlider : _corruptionSlider;
+
+                if (_portShield.ShieldUpgrade && _portShield.ShieldActive && !friendly)
+                {
+                    _portShield.UseShield();            
+                }
+                else
+                {
+                    slider.value += ProgressPerPacket;
+                }
+
                 if(slider.value >= slider.maxValue)
                 {
                     LevelComplete?.Invoke(obj.Packet.Friendly);
@@ -59,6 +94,8 @@ namespace Packets
                     _waveCooldown = 0;
                     _waveDelay = UnityEngine.Random.Range(2f, 3f);
                 }
+
+              
             }
         }
 

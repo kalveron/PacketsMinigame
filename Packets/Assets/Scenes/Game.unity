@@ -1259,6 +1259,7 @@ MonoBehaviour:
   _spawner: {fileID: 901623481}
   _progressSlider: {fileID: 526183445}
   _corruptionSlider: {fileID: 1770252115}
+  _portShield: {fileID: 270374149}
 --- !u!4 &270374146
 Transform:
   m_ObjectHideFlags: 0
