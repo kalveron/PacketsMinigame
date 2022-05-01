@@ -6,7 +6,7 @@ namespace Packets
 {
     public class SliderValuePresenter : MonoBehaviour
     {
-        private const string ProgressString = "{0}/10";
+        private const string ProgressString = "{0}%";
         [SerializeField]
         private TextMeshProUGUI _text;
 
@@ -27,7 +27,7 @@ namespace Packets
         private  void UpdateText(float value)
         {
           
-            _text.text = string.Format(ProgressString, (int)( value * 10));
+            _text.text = string.Format(ProgressString, (value / 1) * 100);
         }
     }
 }
