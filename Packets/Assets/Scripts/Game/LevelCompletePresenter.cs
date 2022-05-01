@@ -20,7 +20,7 @@ namespace Packets
         [SerializeField]
         private UpgradeManager _upgradeManager;
 
-        public int Level { get; private set; } = 0;
+    
 
         private List<string> _successMessages = new List<string>()
         {
@@ -50,9 +50,9 @@ namespace Packets
             if (success)
             {
                 
-                if(Level < 3)
+                if(_manager.Level < 3)
                 {
-                    Level++;
+                    _manager.IncreaseLevel();
                     _upgradeManager.ShowUpgrades();
                 }
                 else

@@ -23,6 +23,7 @@ namespace Packets
         private PortShield _portShield;
 
         public bool GameActive { get; private set; }
+        public int Level { get; private set; } = 0;
 
         private float _waveCooldown = 0f;
         private float _waveDelay;
@@ -89,7 +90,7 @@ namespace Packets
                 _waveCooldown += Time.deltaTime;
                 if (_waveCooldown >= _waveDelay)
                 {
-
+                    
                     bool friendly = UnityEngine.Random.Range(0, 2) == 0;
                     _spawner.SpawnPacket(friendly);
 
@@ -123,6 +124,10 @@ namespace Packets
         public void PauseGame(bool toggle)
         {
             GameActive = toggle;
+        }
+        public void IncreaseLevel()
+        {
+            Level++;
         }
     }
 }
