@@ -7,6 +7,8 @@ namespace Packets
     {
         public static event Action<PacketDestroyedArgs> PacketDestroyed;
 
+        public bool UpgradeEnabled { get; set; }
+
 
         private void OnTriggerEnter2D(Collider2D collision)
         {
@@ -18,7 +20,15 @@ namespace Packets
             {
                 return;
             }
+            
             var args = new PacketDestroyedArgs( packet);
+
+            if(UpgradeEnabled && packet.Friendly)
+            {
+                //Allow good packets to pass through the firewall
+                return;
+            }
+            
             PacketDestroyed?.Invoke(args);
 
         }
